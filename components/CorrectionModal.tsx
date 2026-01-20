@@ -109,7 +109,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
   // ---------------------------------------------------------------------------
   if (successType !== 'none') {
       return (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm font-sans animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
             <div className="bg-white rounded-xl shadow-2xl w-full max-w-sm overflow-hidden flex flex-col items-center p-8 text-center animate-in zoom-in-95 duration-200 scale-100">
                 <div className="w-20 h-20 rounded-full border-4 border-emerald-100 flex items-center justify-center mb-4">
                     <Check size={40} className="text-emerald-500" strokeWidth={3} />
@@ -136,7 +136,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
   // MAIN FORM VIEW
   // ---------------------------------------------------------------------------
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm font-sans">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
       <div className="bg-white rounded-lg shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
         
         {/* Header */}

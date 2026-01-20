@@ -20,13 +20,13 @@ const IMG_LEFT = "https://res.cloudinary.com/ditrwpwyv/image/upload/v1768911958/
 const IMG_RIGHT = "https://res.cloudinary.com/ditrwpwyv/image/upload/v1768911933/ff1e831e-f830-45a8-a8bb-eee152daa8f3_fuylf3.jpg"; 
 
 export const MOCK_LANES: Lane[] = [
-  { id: 'L01', name: 'Cổng vào 01', type: 'Inbound', status: LaneStatus.Idle, lastUpdated: '00:00:00' },
-  { id: 'L02', name: 'Cổng vào 02', type: 'Inbound', status: LaneStatus.Waiting, currentTruck: '51L-88941', duration: '30s', lastUpdated: '00:30:15' },
-  { id: 'L03', name: 'Cổng vào 03', type: 'Inbound', status: LaneStatus.Failed, currentTruck: '30C-22432', containerNo: 'TGBU3719401', duration: '15s', lastUpdated: '01:43:22' },
-  { id: 'L04', name: 'Cổng ra 04', type: 'Outbound', status: LaneStatus.Failed, currentTruck: '30C-42421', containerNo: 'MSKU123456', duration: '120s', lastUpdated: '03:14:10' },
-  { id: 'L05', name: 'Cổng ra 05', type: 'Outbound', status: LaneStatus.Failed, currentTruck: '30C-57145', containerNo: 'PONU987654', duration: '45s', lastUpdated: '05:07:33' },
-  { id: 'L06', name: 'Cổng ra 06', type: 'Outbound', status: LaneStatus.Waiting, currentTruck: '30C-24468', duration: '10s', lastUpdated: '00:17:45' },
-  { id: 'L07', name: 'Cổng ra 07', type: 'Outbound', status: LaneStatus.Success, currentTruck: '29H-11223', containerNo: 'MAEU998877', duration: '25s', lastUpdated: '00:15:20' },
+  { id: 'L01', name: 'Cổng vào 1', type: 'Inbound', status: LaneStatus.Idle, lastUpdated: '00:00:00' },
+  { id: 'L02', name: 'Cổng vào 2', type: 'Inbound', status: LaneStatus.Waiting, currentTruck: '51L-88941', duration: '30s', lastUpdated: '00:30:15' },
+  { id: 'L03', name: 'Cổng vào 3', type: 'Inbound', status: LaneStatus.Failed, currentTruck: '30C-22432', containerNo: 'TGBU3719401', duration: '15s', lastUpdated: '01:43:22' },
+  { id: 'L04', name: 'Cổng ra 4', type: 'Outbound', status: LaneStatus.Failed, currentTruck: '30C-42421', containerNo: 'MSKU123456', duration: '120s', lastUpdated: '03:14:10' },
+  { id: 'L05', name: 'Cổng ra 5', type: 'Outbound', status: LaneStatus.Failed, currentTruck: '30C-57145', containerNo: 'PONU987654', duration: '45s', lastUpdated: '05:07:33' },
+  { id: 'L06', name: 'Cổng ra 6', type: 'Outbound', status: LaneStatus.Waiting, currentTruck: '30C-24468', duration: '10s', lastUpdated: '00:17:45' },
+  { id: 'L07', name: 'Cổng ra 7', type: 'Outbound', status: LaneStatus.Success, currentTruck: '29H-11223', containerNo: 'MAEU998877', duration: '25s', lastUpdated: '00:15:20' },
 ];
 
 export const MOCK_TRANSACTION: TransactionData = {

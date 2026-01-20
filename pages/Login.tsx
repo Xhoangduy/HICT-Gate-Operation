@@ -19,7 +19,7 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-slate-900 relative overflow-hidden font-sans">
+    <div className="min-h-screen w-full flex items-center justify-center bg-slate-900 relative overflow-hidden">
         {/* Background Decorative Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
              {/* Tech grid overlay */}

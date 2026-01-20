@@ -150,8 +150,13 @@ export const Dashboard: React.FC = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImg, setLightboxImg] = useState('');
 
-  // Filter lanes
-  const filteredLanes = filter === 'All' ? MOCK_LANES : MOCK_LANES.filter(l => l.type === filter);
+  // Filter lanes logic
+  const filteredLanes = filter === 'All' 
+    ? MOCK_LANES 
+    : ['Inbound', 'Outbound'].includes(filter) 
+        ? MOCK_LANES.filter(l => l.type === filter)
+        : MOCK_LANES.filter(l => l.id === filter);
+
   const selectedLane = MOCK_LANES.find(l => l.id === selectedLaneId) || MOCK_LANES[0];
   const hasTransaction = selectedLane.status !== LaneStatus.Idle;
 
@@ -230,15 +235,20 @@ export const Dashboard: React.FC = () => {
                     className="w-full pl-3 pr-8 py-2 bg-white border border-slate-300 rounded-md text-sm font-medium text-slate-700 focus:ring-2 focus:ring-[#2796FF] focus:outline-none appearance-none cursor-pointer"
                 >
                     <option value="All">Tất cả cổng</option>
-                    <option value="Inbound">Cổng Vào</option>
-                    <option value="Outbound">Cổng Ra</option>
+                    <option disabled className="text-slate-400 bg-slate-50 font-bold text-xs pt-2">-- NHÓM CỔNG --</option>
+                    <option value="Inbound">Tất cả Cổng Vào</option>
+                    <option value="Outbound">Tất cả Cổng Ra</option>
+                    <option disabled className="text-slate-400 bg-slate-50 font-bold text-xs pt-2">-- DANH SÁCH CHI TIẾT --</option>
+                    {MOCK_LANES.map(lane => (
+                        <option key={lane.id} value={lane.id}>{lane.name}</option>
+                    ))}
                 </select>
                 <Filter className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={14} />
             </div>
         </div>
 
         <div className="flex-1 overflow-y-auto custom-scrollbar p-2 space-y-2">
-            {filteredLanes.map(lane => {
+            {filteredLanes.length > 0 ? filteredLanes.map(lane => {
                 const style = getStatusClasses(lane.status);
                 const isSelected = selectedLaneId === lane.id;
                 return (
@@ -260,7 +270,10 @@ export const Dashboard: React.FC = () => {
                                     <h3 className={`font-bold text-sm leading-tight ${isSelected ? 'text-[#2796FF]' : 'text-slate-700'}`}>{lane.name}</h3>
                                 </div>
                             </div>
-                            <span className="text-xs font-mono font-bold text-slate-500">{lane.lastUpdated}</span>
+                            <div className="text-right">
+                                <span className="text-xs font-mono font-bold text-slate-500 block">{lane.lastUpdated}</span>
+                                <span className="text-[10px] font-mono text-slate-400 block mt-0.5">21/10/2025</span>
+                            </div>
                         </div>
                         <div className="flex justify-between items-center text-xs">
                              <div className={`flex items-center gap-1.5 font-semibold ${isSelected ? 'text-[#2796FF]' : style.text}`}>
@@ -276,7 +289,11 @@ export const Dashboard: React.FC = () => {
                         </div>
                     </div>
                 );
-            })}
+            }) : (
+                <div className="text-center p-4 text-slate-400 text-sm italic">
+                    Không tìm thấy cổng nào phù hợp.
+                </div>
+            )}
         </div>
       </div>
 
@@ -431,13 +448,6 @@ export const Dashboard: React.FC = () => {
                                  </p>
                                  <p className="text-[10px] text-slate-500 italic mt-1">Trả rỗng</p>
                              </div>
-                             
-                             <button 
-                                onClick={() => setIsCorrectionOpen(true)}
-                                className="w-full mt-3 py-2 bg-[#2796FF] text-white rounded-md text-sm font-bold hover:bg-[#2080db] flex items-center justify-center gap-2 transition-colors shadow-sm"
-                             >
-                                 <Edit3 size={14}/> Điều chỉnh & Xác nhận
-                             </button>
                          </div>
                      ) : (
                          <div className="text-center text-slate-400 text-sm mt-4">Chưa có thông tin</div>
@@ -447,16 +457,31 @@ export const Dashboard: React.FC = () => {
 
             {/* Right Panel: Data Verification Table */}
             <div className="w-full md:w-[65%] bg-white rounded-lg border border-slate-200 shadow-sm flex flex-col overflow-hidden">
-                 <div className="px-3 py-2 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
-                     <h3 className="text-xs font-bold text-slate-700 uppercase">Thông tin đối chiếu</h3>
-                     <span className="text-[10px] text-slate-500 bg-white border px-2 py-0.5 rounded">So sánh song song</span>
+                 <div className="px-3 py-2 bg-slate-50 border-b border-slate-200 flex justify-between items-center relative min-h-[42px]">
+                     {/* Center Title */}
+                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <h3 className="text-xs font-bold text-slate-700 uppercase">Thông tin đối chiếu</h3>
+                     </div>
+
+                     {/* Left spacer to push content if needed */}
+                     <div></div>
+                     
+                     {/* Right Action Button */}
+                     {hasTransaction && (
+                        <button 
+                            onClick={() => setIsCorrectionOpen(true)}
+                            className="relative z-10 px-3 py-1.5 bg-[#2796FF] text-white rounded text-xs font-bold hover:bg-[#2080db] flex items-center gap-2 transition-colors shadow-sm"
+                        >
+                            <Edit3 size={12}/> Điều chỉnh & Xác nhận
+                        </button>
+                     )}
                  </div>
                  
                  <div className="flex-1 overflow-auto">
                      <table className="w-full text-left text-sm">
                          <thead className="bg-slate-100 text-slate-500 font-semibold text-[11px] uppercase sticky top-0 z-10">
                              <tr>
-                                 <th className="px-3 py-2 border-b border-r w-1/4">Trường dữ liệu</th>
+                                 <th className="px-3 py-2 border-b border-r w-1/4"></th>
                                  <th className="px-3 py-2 border-b border-r w-[37.5%] text-[#2796FF] bg-[#2796FF]/10">Thông tin OCR</th>
                                  <th className="px-3 py-2 border-b w-[37.5%] text-slate-700">Thông tin Lệnh</th>
                              </tr>
