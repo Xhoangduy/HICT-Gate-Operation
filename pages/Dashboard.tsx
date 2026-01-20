@@ -204,6 +204,15 @@ export const Dashboard: React.FC = () => {
       }, 2000);
   };
 
+  // Helper for row styling
+  const getRowStyle = (ocrVal: string | undefined, sysVal: string | undefined) => {
+    // If OCR equals System -> Green (#D1E7DD), else -> Red (#F8D7DA)
+    if (ocrVal === sysVal) {
+        return 'bg-[#D1E7DD]';
+    }
+    return 'bg-[#F8D7DA]';
+  };
+
   return (
     <div className="flex h-full w-full bg-slate-100 relative">
       
@@ -235,10 +244,6 @@ export const Dashboard: React.FC = () => {
                     className="w-full pl-3 pr-8 py-2 bg-white border border-slate-300 rounded-md text-sm font-medium text-slate-700 focus:ring-2 focus:ring-[#2796FF] focus:outline-none appearance-none cursor-pointer"
                 >
                     <option value="All">Tất cả cổng</option>
-                    <option disabled className="text-slate-400 bg-slate-50 font-bold text-xs pt-2">-- NHÓM CỔNG --</option>
-                    <option value="Inbound">Tất cả Cổng Vào</option>
-                    <option value="Outbound">Tất cả Cổng Ra</option>
-                    <option disabled className="text-slate-400 bg-slate-50 font-bold text-xs pt-2">-- DANH SÁCH CHI TIẾT --</option>
                     {MOCK_LANES.map(lane => (
                         <option key={lane.id} value={lane.id}>{lane.name}</option>
                     ))}
@@ -421,36 +426,61 @@ export const Dashboard: React.FC = () => {
                  </div>
 
                  {/* Order Details Card */}
-                 <div className="bg-white rounded-lg border border-slate-200 shadow-sm flex-1 p-3 overflow-y-auto">
-                     <h3 className="text-xs font-bold text-slate-800 uppercase border-b pb-2 mb-2 flex justify-between">
-                         Thông tin lệnh
-                         <span className="text-[#2796FF]">{hasTransaction ? activeTransactionData.timestamp : '--:--'}</span>
-                     </h3>
+                 <div className="bg-white rounded-lg border border-slate-200 shadow-sm flex-1 p-0 overflow-hidden flex flex-col">
+                     <div className="px-3 py-2 border-b border-slate-200 bg-slate-50 flex justify-between items-center shrink-0">
+                         <h3 className="text-xs font-bold text-slate-800 uppercase">Thông tin lệnh</h3>
+                         <span className="text-[#2796FF] text-xs font-bold">{hasTransaction ? activeTransactionData.timestamp : '--:--'}</span>
+                     </div>
+                     
                      {hasTransaction ? (
-                         <div className="space-y-2 text-sm">
-                             <div className="grid grid-cols-2 gap-x-2">
-                                 <div><span className="text-slate-500 text-xs">Số Phiên:</span> <div className="font-mono font-medium text-slate-900">{activeTransactionData.sessionId}</div></div>
-                                 <div><span className="text-slate-500 text-xs">Số Seal:</span> <div className="font-mono font-medium text-slate-900">{activeTransactionData.systemData.sealNo || '---'}</div></div>
+                         <div className="p-2 flex flex-col gap-2 text-sm h-full overflow-hidden">
+                             {/* Detailed 2-Column Table Layout */}
+                             <div className="grid grid-cols-2 border border-slate-200 rounded-lg overflow-hidden shrink-0">
+                                {/* Row 1: Session & Gate */}
+                                <div className="p-1.5 border-r border-b border-slate-200">
+                                    <div className="text-[10px] text-slate-500 font-bold uppercase">Số phiên:</div>
+                                    <div className="font-mono text-slate-900 font-bold text-xs truncate max-w-[150px]" title={activeTransactionData.sessionId}>{activeTransactionData.sessionId}</div>
+                                </div>
+                                <div className="p-1.5 border-b border-slate-200">
+                                    <div className="text-[10px] text-slate-500 font-bold uppercase">Tên cổng:</div>
+                                    <div className="font-bold text-[#2796FF] text-xs truncate">{MOCK_LANES.find(l => l.id === activeTransactionData.laneId)?.name || activeTransactionData.laneId}</div>
+                                </div>
+                                
+                                {/* Row 2: PIN & Seal */}
+                                <div className="p-1.5 border-r border-b border-slate-200 bg-slate-50/30">
+                                    <div className="text-[10px] text-slate-500 font-bold uppercase">Số PIN:</div>
+                                    <div className="font-mono text-slate-900 font-bold text-xs">{activeTransactionData.systemData.bookingNo}</div>
+                                </div>
+                                <div className="p-1.5 border-b border-slate-200 bg-slate-50/30">
+                                    <div className="text-[10px] text-slate-500 font-bold uppercase">Số seal:</div>
+                                    <div className="font-mono text-slate-900 font-bold text-xs">{activeTransactionData.systemData.sealNo || '---'}</div>
+                                </div>
+                                
+                                {/* Row 3: Operation & VGM */}
+                                <div className="p-1.5 border-r border-slate-200">
+                                    <div className="text-[10px] text-slate-500 font-bold uppercase">Tác nghiệp:</div>
+                                    <div className="font-bold text-slate-900 text-xs">Trả rỗng</div>
+                                </div>
+                                <div className="p-1.5">
+                                    <div className="text-[10px] text-slate-500 font-bold uppercase">VGM:</div>
+                                    <div className="font-mono text-red-600 font-bold text-xs">{activeTransactionData.systemData.vgm || '---'}</div>
+                                </div>
                              </div>
-                             <div className="grid grid-cols-2 gap-x-2">
-                                 <div><span className="text-slate-500 text-xs">Số PIN:</span> <div className="font-mono font-medium text-slate-900">{activeTransactionData.systemData.bookingNo}</div></div>
-                                 <div><span className="text-slate-500 text-xs">VGM:</span> <div className="font-mono font-medium text-amber-600">{activeTransactionData.systemData.vgm || '---'}</div></div>
-                             </div>
-                             
+
                              {/* GATE STATUS / NOTES SECTION */}
-                             <div className="mt-3 p-2 bg-rose-50 border border-rose-200 rounded-md">
+                             <div className="mt-1 p-2 bg-rose-50 border border-rose-200 rounded-md shrink-0">
                                  <div className="flex items-center gap-1.5 mb-1">
                                     <AlertTriangle size={12} className="text-rose-600" />
-                                    <span className="text-xs font-bold text-rose-700 uppercase">Ghi chú (Gate Status)</span>
+                                    <span className="text-xs font-bold text-rose-700 uppercase">Ghi chú</span>
                                  </div>
-                                 <p className="text-sm font-semibold text-slate-800 leading-snug">
+                                 <p className="text-xs font-semibold text-slate-800 leading-snug line-clamp-2">
                                     {activeTransactionData.notes}
                                  </p>
-                                 <p className="text-[10px] text-slate-500 italic mt-1">Trả rỗng</p>
                              </div>
+                             
                          </div>
                      ) : (
-                         <div className="text-center text-slate-400 text-sm mt-4">Chưa có thông tin</div>
+                         <div className="p-8 text-center text-slate-400 text-sm">Chưa có thông tin</div>
                      )}
                  </div>
             </div>
@@ -460,7 +490,7 @@ export const Dashboard: React.FC = () => {
                  <div className="px-3 py-2 bg-slate-50 border-b border-slate-200 flex justify-between items-center relative min-h-[42px]">
                      {/* Center Title */}
                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <h3 className="text-xs font-bold text-slate-700 uppercase">Thông tin đối chiếu</h3>
+                        <h3 className="text-xs font-bold text-black uppercase">THÔNG TIN ĐỐI CHIẾU</h3>
                      </div>
 
                      {/* Left spacer to push content if needed */}
@@ -472,47 +502,42 @@ export const Dashboard: React.FC = () => {
                             onClick={() => setIsCorrectionOpen(true)}
                             className="relative z-10 px-3 py-1.5 bg-[#2796FF] text-white rounded text-xs font-bold hover:bg-[#2080db] flex items-center gap-2 transition-colors shadow-sm"
                         >
-                            <Edit3 size={12}/> Điều chỉnh & Xác nhận
+                            <Edit3 size={12}/> Điều chỉnh
                         </button>
                      )}
                  </div>
                  
                  <div className="flex-1 overflow-auto">
                      <table className="w-full text-left text-sm">
-                         <thead className="bg-slate-100 text-slate-500 font-semibold text-[11px] uppercase sticky top-0 z-10">
+                         <thead className="bg-white text-black font-bold text-[11px] uppercase sticky top-0 z-10 border-b border-slate-200">
                              <tr>
-                                 <th className="px-3 py-2 border-b border-r w-1/4"></th>
-                                 <th className="px-3 py-2 border-b border-r w-[37.5%] text-[#2796FF] bg-[#2796FF]/10">Thông tin OCR</th>
-                                 <th className="px-3 py-2 border-b w-[37.5%] text-slate-700">Thông tin Lệnh</th>
+                                 <th className="px-3 py-2 border-r w-1/4"></th>
+                                 <th className="px-3 py-2 border-r w-[37.5%]">THÔNG TIN OCR</th>
+                                 <th className="px-3 py-2 w-[37.5%]">THÔNG TIN LỆNH</th>
                              </tr>
                          </thead>
                          <tbody className="divide-y divide-slate-100">
                             {hasTransaction ? (
                                 <>
-                                 <tr>
-                                     <td className="px-3 py-2.5 font-medium text-slate-600 bg-slate-50/50 text-xs uppercase">Số Container</td>
-                                     <td className={`px-3 py-2.5 font-mono font-bold ${activeTransactionData.ocrData.containerNo !== activeTransactionData.systemData.containerNo ? 'text-rose-600 bg-rose-50' : 'text-emerald-700'}`}>{activeTransactionData.ocrData.containerNo}</td>
-                                     <td className="px-3 py-2.5 font-mono text-slate-800">{activeTransactionData.systemData.containerNo}</td>
+                                 <tr className={getRowStyle(activeTransactionData.ocrData.containerNo, activeTransactionData.systemData.containerNo)}>
+                                     <td className="px-3 py-2.5 font-bold text-black text-xs uppercase">SỐ CONTAINER</td>
+                                     <td className="px-3 py-2.5 font-mono text-black">{activeTransactionData.ocrData.containerNo}</td>
+                                     <td className="px-3 py-2.5 font-mono text-black">{activeTransactionData.systemData.containerNo}</td>
                                  </tr>
-                                 <tr>
-                                     <td className="px-3 py-2.5 font-medium text-slate-600 bg-slate-50/50 text-xs uppercase">Kích cỡ (ISO)</td>
-                                     <td className="px-3 py-2.5 font-mono text-slate-800">{activeTransactionData.ocrData.isoCode}</td>
-                                     <td className="px-3 py-2.5 font-mono text-slate-800">{activeTransactionData.systemData.isoCode}</td>
+                                 <tr className={getRowStyle(activeTransactionData.ocrData.isoCode, activeTransactionData.systemData.isoCode)}>
+                                     <td className="px-3 py-2.5 font-bold text-black text-xs uppercase">KÍCH CỠ</td>
+                                     <td className="px-3 py-2.5 font-mono text-black">{activeTransactionData.ocrData.isoCode}</td>
+                                     <td className="px-3 py-2.5 font-mono text-black">{activeTransactionData.systemData.isoCode}</td>
                                  </tr>
-                                 <tr>
-                                     <td className="px-3 py-2.5 font-medium text-slate-600 bg-slate-50/50 text-xs uppercase">Số xe</td>
-                                     <td className="px-3 py-2.5 font-mono text-slate-800">{activeTransactionData.ocrData.truckPlate}</td>
-                                     <td className="px-3 py-2.5 font-mono text-slate-800">{activeTransactionData.systemData.truckPlate}</td>
+                                 <tr className={getRowStyle(activeTransactionData.ocrData.truckPlate, activeTransactionData.systemData.truckPlate)}>
+                                     <td className="px-3 py-2.5 font-bold text-black text-xs uppercase">SỐ XE</td>
+                                     <td className="px-3 py-2.5 font-mono text-black">{activeTransactionData.ocrData.truckPlate}</td>
+                                     <td className="px-3 py-2.5 font-mono text-black">{activeTransactionData.systemData.truckPlate}</td>
                                  </tr>
-                                 <tr>
-                                     <td className="px-3 py-2.5 font-medium text-slate-600 bg-slate-50/50 text-xs uppercase">Số mooc</td>
-                                     <td className={`px-3 py-2.5 font-mono ${activeTransactionData.ocrData.trailerPlate !== activeTransactionData.systemData.trailerPlate ? 'text-rose-600 font-bold bg-rose-50' : 'text-emerald-700'}`}>{activeTransactionData.ocrData.trailerPlate}</td>
-                                     <td className="px-3 py-2.5 font-mono text-slate-800">{activeTransactionData.systemData.trailerPlate}</td>
-                                 </tr>
-                                 <tr>
-                                     <td className="px-3 py-2.5 font-medium text-slate-600 bg-slate-50/50 text-xs uppercase">Số Seal</td>
-                                     <td className={`px-3 py-2.5 font-mono ${!activeTransactionData.ocrData.sealNo ? 'text-amber-600 italic' : 'text-slate-800'}`}>{activeTransactionData.ocrData.sealNo || 'Không đọc được'}</td>
-                                     <td className="px-3 py-2.5 font-mono text-slate-800">{activeTransactionData.systemData.sealNo}</td>
+                                 <tr className={getRowStyle(activeTransactionData.ocrData.trailerPlate, activeTransactionData.systemData.trailerPlate)}>
+                                     <td className="px-3 py-2.5 font-bold text-black text-xs uppercase">SỐ MOOC</td>
+                                     <td className="px-3 py-2.5 font-mono text-black">{activeTransactionData.ocrData.trailerPlate}</td>
+                                     <td className="px-3 py-2.5 font-mono text-black">{activeTransactionData.systemData.trailerPlate}</td>
                                  </tr>
                                 </>
                             ) : (
