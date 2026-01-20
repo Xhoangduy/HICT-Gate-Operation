@@ -1,0 +1,5 @@
+{
+  "name": "GATE OPERATION SYSTEM",
+  "description": "A comprehensive redesign of the SmartGate Gate Operating System (GOS). Features real-time lane monitoring, OCR vs. TOS data verification, and detailed analytics for port logistics.",
+  "requestFramePermissions": []
+}
