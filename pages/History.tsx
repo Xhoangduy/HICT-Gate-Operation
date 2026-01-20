@@ -35,7 +35,7 @@ export const History: React.FC = () => {
                     <input 
                         type="text" 
                         placeholder="Container No, Truck Plate, or Session ID" 
-                        className="w-full pl-10 pr-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2c92d5] focus:outline-none bg-white text-slate-900"
+                        className="w-full pl-10 pr-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2796FF] focus:outline-none bg-white text-slate-900"
                     />
                 </div>
             </div>
@@ -45,7 +45,7 @@ export const History: React.FC = () => {
                     <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                     <input 
                         type="date" 
-                        className="w-full pl-10 pr-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2c92d5] focus:outline-none text-sm bg-white text-slate-900"
+                        className="w-full pl-10 pr-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2796FF] focus:outline-none text-sm bg-white text-slate-900"
                     />
                 </div>
             </div>
@@ -53,7 +53,7 @@ export const History: React.FC = () => {
                 <label className="text-xs font-semibold text-slate-500 uppercase">Status</label>
                  <div className="relative">
                     <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                    <select className="w-full pl-10 pr-8 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2c92d5] focus:outline-none appearance-none text-sm bg-white text-slate-900">
+                    <select className="w-full pl-10 pr-8 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2796FF] focus:outline-none appearance-none text-sm bg-white text-slate-900">
                         <option>All Status</option>
                         <option>Success</option>
                         <option>Failed</option>
@@ -61,7 +61,7 @@ export const History: React.FC = () => {
                     </select>
                 </div>
             </div>
-            <button className="px-6 py-2.5 bg-[#2c92d5] hover:bg-[#237ab3] text-white font-bold rounded-lg transition-colors shadow-sm">
+            <button className="px-6 py-2.5 bg-[#2796FF] hover:bg-[#2080db] text-white font-bold rounded-lg transition-colors shadow-sm">
                 Load Data
             </button>
         </div>
@@ -83,7 +83,7 @@ export const History: React.FC = () => {
                         <tr key={item.id} className="hover:bg-slate-50 transition-colors">
                             <td className="py-4 px-6 text-sm text-slate-600">{item.time}</td>
                             <td className="py-4 px-6 text-sm font-medium text-slate-800">{item.lane}</td>
-                            <td className="py-4 px-6 text-sm font-mono font-semibold text-[#2c92d5]">{item.container}</td>
+                            <td className="py-4 px-6 text-sm font-mono font-semibold text-[#2796FF]">{item.container}</td>
                             <td className="py-4 px-6 text-sm font-mono text-slate-800">{item.truck}</td>
                             <td className="py-4 px-6">
                                 <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${getStatusColor(item.status)}`}>
@@ -91,7 +91,7 @@ export const History: React.FC = () => {
                                 </span>
                             </td>
                             <td className="py-4 px-6 text-right">
-                                <button className="text-[#2c92d5] hover:text-[#237ab3] text-sm font-semibold">View</button>
+                                <button className="text-[#2796FF] hover:text-[#2080db] text-sm font-semibold">View</button>
                             </td>
                         </tr>
                     ))}

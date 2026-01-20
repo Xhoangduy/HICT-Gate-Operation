@@ -15,7 +15,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon: Icon, label, active }) => {
       to={to}
       className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-200 ${
         active
-          ? 'bg-white text-[#2c92d5] font-bold shadow-sm'
+          ? 'bg-white text-[#2796FF] font-bold shadow-sm'
           : 'text-blue-100 hover:bg-white/10 hover:text-white font-medium'
       }`}
     >
@@ -37,11 +37,11 @@ export const Layout: React.FC = () => {
   return (
     <div className="flex flex-col h-screen w-full bg-slate-50 overflow-hidden">
       {/* Horizontal Header Navbar */}
-      <header className="h-16 bg-[#2c92d5] shadow-md z-50 flex items-center justify-between px-6 shrink-0 relative">
+      <header className="h-16 bg-[#2796FF] shadow-md z-50 flex items-center justify-between px-6 shrink-0 relative">
         <div className="flex items-center gap-8">
             {/* Logo Area */}
             <div className="flex items-center gap-3">
-                <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center font-extrabold text-[#2c92d5] shadow-sm text-xl">G</div>
+                <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center font-extrabold text-[#2796FF] shadow-sm text-xl">G</div>
                 <h1 className="text-white font-bold text-sm tracking-tight leading-tight">
                     GATE OPERATION <br/>
                     <span className="text-blue-100 font-medium opacity-90">SYSTEM</span>

@@ -123,7 +123,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
                 </p>
                 <button 
                     onClick={handleFinalConfirm}
-                    className="bg-[#2c92d5] hover:bg-[#237ab3] text-white font-bold py-2.5 px-8 rounded-lg shadow-lg shadow-[#2c92d5]/20 transition-all w-32"
+                    className="bg-[#2796FF] hover:bg-[#2080db] text-white font-bold py-2.5 px-8 rounded-lg shadow-lg shadow-[#2796FF]/20 transition-all w-32"
                 >
                     OK
                 </button>
@@ -144,7 +144,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
             <div className="flex items-center gap-2">
                 <h3 className="text-lg font-bold text-slate-800">Thông số OCR:</h3>
                 {changes > 0 && (
-                    <span className="bg-[#2c92d5] text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                    <span className="bg-[#2796FF] text-white text-xs font-bold px-2 py-0.5 rounded-full">
                         {changes} thay đổi
                     </span>
                 )}
@@ -166,7 +166,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
                     type="text" 
                     value={formState.bic}
                     onChange={(e) => setFormState({...formState, bic: e.target.value.toUpperCase()})}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2c92d5] focus:border-[#2c92d5] font-mono text-slate-900 uppercase bg-white"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono text-slate-900 uppercase bg-white"
                 />
             </div>
             <div className="space-y-1">
@@ -175,7 +175,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
                     type="text" 
                     value={formState.contNumber}
                     onChange={(e) => setFormState({...formState, contNumber: e.target.value})}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2c92d5] focus:border-[#2c92d5] font-mono text-slate-900 bg-white"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono text-slate-900 bg-white"
                 />
             </div>
 
@@ -186,7 +186,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
                     type="text" 
                     value={formState.trailer}
                     onChange={(e) => setFormState({...formState, trailer: e.target.value.toUpperCase()})}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2c92d5] focus:border-[#2c92d5] font-mono text-slate-900 uppercase bg-white"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono text-slate-900 uppercase bg-white"
                 />
             </div>
 
@@ -196,7 +196,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
                     type="text" 
                     value={formState.truck}
                     onChange={(e) => setFormState({...formState, truck: e.target.value.toUpperCase()})}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2c92d5] focus:border-[#2c92d5] font-mono text-slate-900 uppercase bg-white"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono text-slate-900 uppercase bg-white"
                 />
             </div>
 
@@ -206,7 +206,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
                     type="text" 
                     value={formState.iso}
                     onChange={(e) => setFormState({...formState, iso: e.target.value.toUpperCase()})}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2c92d5] focus:border-[#2c92d5] font-mono text-slate-900 uppercase bg-white"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono text-slate-900 uppercase bg-white"
                 />
             </div>
 
@@ -227,7 +227,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
                     type="text" 
                     value={formState.vgm}
                     onChange={(e) => setFormState({...formState, vgm: e.target.value})}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2c92d5] focus:border-[#2c92d5] font-mono text-slate-900 bg-white"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono text-slate-900 bg-white"
                 />
             </div>
 
@@ -315,7 +315,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
                 </button>
                 <button 
                     onClick={handleUpdateClick} 
-                    className="px-4 py-2 bg-[#2c92d5] hover:bg-[#237ab3] text-white text-sm font-bold rounded shadow-sm transition-colors flex items-center gap-2"
+                    className="px-4 py-2 bg-[#2796FF] hover:bg-[#2080db] text-white text-sm font-bold rounded shadow-sm transition-colors flex items-center gap-2"
                 >
                     <Save size={16} />
                     Cập Nhật

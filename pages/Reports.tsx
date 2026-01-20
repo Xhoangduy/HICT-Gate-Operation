@@ -72,7 +72,7 @@ export const Reports: React.FC = () => {
 
   const getLabelIcon = (type: string) => {
     switch (type) {
-        case 'total': return <div className="w-3 h-3 rounded-full bg-[#2c92d5] mr-2"></div>;
+        case 'total': return <div className="w-3 h-3 rounded-full bg-[#2796FF] mr-2"></div>;
         case 'subtotal_in': return <div className="w-3 h-3 rounded-full bg-emerald-500 mr-2"></div>;
         case 'subtotal_out': return <div className="w-3 h-3 rounded-full bg-rose-500 mr-2"></div>;
         default: return null; // No icon for normal lanes, or maybe a small dot
@@ -86,13 +86,13 @@ export const Reports: React.FC = () => {
             <div className="flex gap-6">
                 <button 
                     onClick={() => setActiveTab('summary')}
-                    className={`pb-3 text-sm font-bold border-b-2 transition-colors ${activeTab === 'summary' ? 'border-[#2c92d5] text-[#2c92d5]' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+                    className={`pb-3 text-sm font-bold border-b-2 transition-colors ${activeTab === 'summary' ? 'border-[#2796FF] text-[#2796FF]' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
                 >
                     Báo cáo Tổng hợp
                 </button>
                 <button 
                     onClick={() => setActiveTab('detail')}
-                    className={`pb-3 text-sm font-bold border-b-2 transition-colors ${activeTab === 'detail' ? 'border-[#2c92d5] text-[#2c92d5]' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+                    className={`pb-3 text-sm font-bold border-b-2 transition-colors ${activeTab === 'detail' ? 'border-[#2796FF] text-[#2796FF]' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
                 >
                     Báo cáo Chi tiết
                 </button>
@@ -120,7 +120,7 @@ export const Reports: React.FC = () => {
                                         type="datetime-local" 
                                         value={fromDate}
                                         onChange={(e) => setFromDate(e.target.value)}
-                                        className="pl-3 pr-3 py-2 border border-slate-300 rounded text-sm focus:ring-2 focus:ring-[#2c92d5] outline-none w-48 bg-white text-slate-900"
+                                        className="pl-3 pr-3 py-2 border border-slate-300 rounded text-sm focus:ring-2 focus:ring-[#2796FF] outline-none w-48 bg-white text-slate-900"
                                     />
                                 </div>
                             </div>
@@ -131,19 +131,19 @@ export const Reports: React.FC = () => {
                                         type="datetime-local" 
                                         value={toDate}
                                         onChange={(e) => setToDate(e.target.value)}
-                                        className="pl-3 pr-3 py-2 border border-slate-300 rounded text-sm focus:ring-2 focus:ring-[#2c92d5] outline-none w-48 bg-white text-slate-900"
+                                        className="pl-3 pr-3 py-2 border border-slate-300 rounded text-sm focus:ring-2 focus:ring-[#2796FF] outline-none w-48 bg-white text-slate-900"
                                     />
                                 </div>
                             </div>
                             <div className="space-y-1">
                                 <label className="text-xs font-semibold text-slate-500">Loại làn</label>
-                                <select className="pl-3 pr-8 py-2 border border-slate-300 rounded text-sm focus:ring-2 focus:ring-[#2c92d5] outline-none w-32 bg-white text-slate-700">
+                                <select className="pl-3 pr-8 py-2 border border-slate-300 rounded text-sm focus:ring-2 focus:ring-[#2796FF] outline-none w-32 bg-white text-slate-700">
                                     <option>Tất cả</option>
                                     <option>Cổng vào</option>
                                     <option>Cổng ra</option>
                                 </select>
                             </div>
-                            <button className="px-4 py-2 bg-[#2c92d5] hover:bg-[#237ab3] text-white font-bold rounded text-sm shadow-sm transition-colors mb-[1px]">
+                            <button className="px-4 py-2 bg-[#2796FF] hover:bg-[#2080db] text-white font-bold rounded text-sm shadow-sm transition-colors mb-[1px]">
                                 Xem báo cáo
                             </button>
                             <button className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded text-sm shadow-sm transition-colors flex items-center gap-2 mb-[1px]">
@@ -157,7 +157,7 @@ export const Reports: React.FC = () => {
                             <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
                                 <div className="flex items-center justify-between mb-4">
                                      <h3 className="font-bold text-slate-700 flex items-center gap-2">
-                                         <BarChart2 size={18} className="text-[#2c92d5]" />
+                                         <BarChart2 size={18} className="text-[#2796FF]" />
                                          Lưu lượng xe theo thời gian
                                      </h3>
                                 </div>
@@ -166,8 +166,8 @@ export const Reports: React.FC = () => {
                                         <AreaChart data={MOCK_CHART_DATA} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                                             <defs>
                                                 <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
-                                                    <stop offset="5%" stopColor="#2c92d5" stopOpacity={0.8}/>
-                                                    <stop offset="95%" stopColor="#2c92d5" stopOpacity={0}/>
+                                                    <stop offset="5%" stopColor="#2796FF" stopOpacity={0.8}/>
+                                                    <stop offset="95%" stopColor="#2796FF" stopOpacity={0}/>
                                                 </linearGradient>
                                                 <linearGradient id="colorSuccess" x1="0" y1="0" x2="0" y2="1">
                                                     <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
@@ -179,7 +179,7 @@ export const Reports: React.FC = () => {
                                             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
                                             <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
                                             <Legend iconType="circle" />
-                                            <Area type="monotone" dataKey="total" stroke="#2c92d5" fillOpacity={1} fill="url(#colorTotal)" name="Tổng lượt" />
+                                            <Area type="monotone" dataKey="total" stroke="#2796FF" fillOpacity={1} fill="url(#colorTotal)" name="Tổng lượt" />
                                             <Area type="monotone" dataKey="success" stroke="#10b981" fillOpacity={1} fill="url(#colorSuccess)" name="Thành công" />
                                         </AreaChart>
                                     </ResponsiveContainer>
@@ -190,7 +190,7 @@ export const Reports: React.FC = () => {
                              <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm flex flex-col">
                                 <div className="flex items-center justify-between mb-4">
                                      <h3 className="font-bold text-slate-700 flex items-center gap-2">
-                                         <PieChartIcon size={18} className="text-[#2c92d5]" />
+                                         <PieChartIcon size={18} className="text-[#2796FF]" />
                                          Tỉ lệ Thành công / Thất bại
                                      </h3>
                                 </div>
@@ -237,7 +237,7 @@ export const Reports: React.FC = () => {
                                         <tr key={row.id} className={`border-b border-slate-100 last:border-0 ${getSummaryRowStyle(row.type)}`}>
                                             <td className="py-3 px-4 text-sm flex items-center">
                                                 {getLabelIcon(row.type)}
-                                                <span className={row.type.includes('lane') ? 'ml-5 underline decoration-slate-300 underline-offset-2 text-[#2c92d5] cursor-pointer' : ''}>
+                                                <span className={row.type.includes('lane') ? 'ml-5 underline decoration-slate-300 underline-offset-2 text-[#2796FF] cursor-pointer' : ''}>
                                                     {row.label}
                                                 </span>
                                             </td>
@@ -277,7 +277,7 @@ export const Reports: React.FC = () => {
                         <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm mb-6">
                             <div className="flex items-center justify-between mb-4">
                                     <h3 className="font-bold text-slate-700 flex items-center gap-2">
-                                        <Activity size={18} className="text-[#2c92d5]" />
+                                        <Activity size={18} className="text-[#2796FF]" />
                                         Biến động giao dịch trong ngày
                                     </h3>
                             </div>
@@ -286,8 +286,8 @@ export const Reports: React.FC = () => {
                                     <AreaChart data={DETAIL_CHART_DATA} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                                         <defs>
                                             <linearGradient id="colorTraffic" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="5%" stopColor="#2c92d5" stopOpacity={0.8}/>
-                                                <stop offset="95%" stopColor="#2c92d5" stopOpacity={0}/>
+                                                <stop offset="5%" stopColor="#2796FF" stopOpacity={0.8}/>
+                                                <stop offset="95%" stopColor="#2796FF" stopOpacity={0}/>
                                             </linearGradient>
                                             <linearGradient id="colorIssues" x1="0" y1="0" x2="0" y2="1">
                                                 <stop offset="5%" stopColor="#f43f5e" stopOpacity={0.8}/>
@@ -299,7 +299,7 @@ export const Reports: React.FC = () => {
                                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
                                         <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
                                         <Legend iconType="circle" />
-                                        <Area type="monotone" dataKey="traffic" stroke="#2c92d5" fillOpacity={1} fill="url(#colorTraffic)" name="Giao dịch" />
+                                        <Area type="monotone" dataKey="traffic" stroke="#2796FF" fillOpacity={1} fill="url(#colorTraffic)" name="Giao dịch" />
                                         <Area type="monotone" dataKey="issues" stroke="#f43f5e" fillOpacity={1} fill="url(#colorIssues)" name="Lỗi/Cảnh báo" />
                                     </AreaChart>
                                 </ResponsiveContainer>
@@ -314,7 +314,7 @@ export const Reports: React.FC = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3">
                                 <div className="space-y-1">
                                     <label className="text-[10px] font-bold text-slate-500 uppercase">Làn</label>
-                                    <select className="w-full border border-slate-300 rounded px-2 py-1.5 text-sm outline-none focus:border-[#2c92d5] bg-white text-slate-900">
+                                    <select className="w-full border border-slate-300 rounded px-2 py-1.5 text-sm outline-none focus:border-[#2796FF] bg-white text-slate-900">
                                         <option>Tất cả</option>
                                         <option>Cổng vào 6</option>
                                         <option>Cổng ra 2</option>
@@ -322,23 +322,23 @@ export const Reports: React.FC = () => {
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-[10px] font-bold text-slate-500 uppercase">Số lệnh</label>
-                                    <input type="text" placeholder="VD: L123" className="w-full border border-slate-300 rounded px-2 py-1.5 text-sm outline-none focus:border-[#2c92d5] bg-white text-slate-900"/>
+                                    <input type="text" placeholder="VD: L123" className="w-full border border-slate-300 rounded px-2 py-1.5 text-sm outline-none focus:border-[#2796FF] bg-white text-slate-900"/>
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-[10px] font-bold text-slate-500 uppercase">Số container</label>
-                                    <input type="text" placeholder="VD: CONU123..." className="w-full border border-slate-300 rounded px-2 py-1.5 text-sm outline-none focus:border-[#2c92d5] bg-white text-slate-900"/>
+                                    <input type="text" placeholder="VD: CONU123..." className="w-full border border-slate-300 rounded px-2 py-1.5 text-sm outline-none focus:border-[#2796FF] bg-white text-slate-900"/>
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-[10px] font-bold text-slate-500 uppercase">Số xe</label>
-                                    <input type="text" placeholder="VD: 51F-12345" className="w-full border border-slate-300 rounded px-2 py-1.5 text-sm outline-none focus:border-[#2c92d5] bg-white text-slate-900"/>
+                                    <input type="text" placeholder="VD: 51F-12345" className="w-full border border-slate-300 rounded px-2 py-1.5 text-sm outline-none focus:border-[#2796FF] bg-white text-slate-900"/>
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-[10px] font-bold text-slate-500 uppercase">Số mooc</label>
-                                    <input type="text" placeholder="VD: M789" className="w-full border border-slate-300 rounded px-2 py-1.5 text-sm outline-none focus:border-[#2c92d5] bg-white text-slate-900"/>
+                                    <input type="text" placeholder="VD: M789" className="w-full border border-slate-300 rounded px-2 py-1.5 text-sm outline-none focus:border-[#2796FF] bg-white text-slate-900"/>
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-[10px] font-bold text-slate-500 uppercase">Trạng thái</label>
-                                    <select className="w-full border border-slate-300 rounded px-2 py-1.5 text-sm outline-none focus:border-[#2c92d5] bg-white text-slate-900">
+                                    <select className="w-full border border-slate-300 rounded px-2 py-1.5 text-sm outline-none focus:border-[#2796FF] bg-white text-slate-900">
                                         <option>Tất cả</option>
                                         <option>Thành công</option>
                                         <option>Thất bại</option>
@@ -391,7 +391,7 @@ export const Reports: React.FC = () => {
                                                 {row.reason}
                                             </td>
                                             <td className="py-3 px-3 text-center">
-                                                <button className="p-1 text-[#2c92d5] hover:bg-blue-50 rounded transition-colors">
+                                                <button className="p-1 text-[#2796FF] hover:bg-blue-50 rounded transition-colors">
                                                     <ImageIcon size={18} />
                                                 </button>
                                             </td>

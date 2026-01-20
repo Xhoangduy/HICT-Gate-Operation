@@ -2,7 +2,7 @@ import { Lane, LaneStatus, TransactionData } from './types';
 
 // Realistic Container Images - Inspection Quality
 // Panorama: Full side view of container on truck
-const IMG_PANORAMA = "https://res.cloudinary.com/ditrwpwyv/image/upload/v1768911959/2fff70f4-92ad-4745-9d08-29332e220bc9_zpssk3.jpg"; 
+const IMG_PANORAMA = "https://res.cloudinary.com/ditrwpwyv/image/upload/v1768911958/f74266da-2c1c-401c-b439-77262f42eb98_pel7hn.jpg"; 
 
 // Front: Container Doors (Direct view showing ID & Locks)
 const IMG_FRONT = "https://res.cloudinary.com/ditrwpwyv/image/upload/v1768911949/2c8a1e5e-2cd8-4387-83f9-69044efe2803_s3f0xr.jpg"; 

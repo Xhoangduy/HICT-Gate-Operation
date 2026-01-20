@@ -30,10 +30,10 @@ const getStatusClasses = (status: LaneStatus) => {
         };
     case LaneStatus.Processing: 
         return { 
-            border: 'border-l-[#2c92d5]', 
-            bg: 'bg-[#2c92d5]/10', 
-            text: 'text-[#2c92d5]',
-            icon: <Layers size={14} className="animate-pulse text-[#2c92d5]" />
+            border: 'border-l-[#2796FF]', 
+            bg: 'bg-[#2796FF]/10', 
+            text: 'text-[#2796FF]',
+            icon: <Layers size={14} className="animate-pulse text-[#2796FF]" />
         };
     default: 
         return { 
@@ -206,7 +206,7 @@ export const Dashboard: React.FC = () => {
       {isTosSyncing && (
           <div className="absolute inset-0 z-50 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center animate-in fade-in">
               <div className="bg-white p-6 rounded-2xl shadow-2xl flex flex-col items-center border border-slate-100">
-                  <Loader2 className="h-10 w-10 text-[#2c92d5] animate-spin mb-3" />
+                  <Loader2 className="h-10 w-10 text-[#2796FF] animate-spin mb-3" />
                   <h3 className="text-lg font-bold text-slate-800">Đồng bộ TOS...</h3>
                   <p className="text-slate-500 text-sm">Đang gửi xác nhận xe qua cổng tới hệ thống cảng.</p>
               </div>
@@ -220,14 +220,14 @@ export const Dashboard: React.FC = () => {
       <div className="w-[340px] flex flex-col border-r border-slate-200 bg-white h-full shrink-0 shadow-lg z-10">
         <div className="p-3 border-b border-slate-100 bg-slate-50">
             <h2 className="text-sm font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-2">
-                <Layers size={16} className="text-[#2c92d5]"/>
+                <Layers size={16} className="text-[#2796FF]"/>
                 Danh sách Cổng
             </h2>
             <div className="relative">
                 <select 
                     value={filter}
                     onChange={(e) => setFilter(e.target.value)}
-                    className="w-full pl-3 pr-8 py-2 bg-white border border-slate-300 rounded-md text-sm font-medium text-slate-700 focus:ring-2 focus:ring-[#2c92d5] focus:outline-none appearance-none cursor-pointer"
+                    className="w-full pl-3 pr-8 py-2 bg-white border border-slate-300 rounded-md text-sm font-medium text-slate-700 focus:ring-2 focus:ring-[#2796FF] focus:outline-none appearance-none cursor-pointer"
                 >
                     <option value="All">Tất cả cổng</option>
                     <option value="Inbound">Cổng Vào</option>
@@ -247,23 +247,23 @@ export const Dashboard: React.FC = () => {
                         onClick={() => setSelectedLaneId(lane.id)}
                         className={`
                             relative p-3 rounded-lg border-l-4 cursor-pointer transition-all duration-200 group
-                            ${isSelected ? 'bg-[#2c92d5]/10 ring-1 ring-[#2c92d5]/30 shadow-sm' : 'hover:bg-slate-50 border-slate-100 hover:border-slate-300'}
-                            ${isSelected ? 'border-l-[#2c92d5]' : style.border}
+                            ${isSelected ? 'bg-[#2796FF]/10 ring-1 ring-[#2796FF]/30 shadow-sm' : 'hover:bg-slate-50 border-slate-100 hover:border-slate-300'}
+                            ${isSelected ? 'border-l-[#2796FF]' : style.border}
                         `}
                     >
                         <div className="flex justify-between items-start mb-2">
                             <div className="flex items-center gap-2">
                                 <div className={`p-1.5 rounded-md ${isSelected ? 'bg-white' : style.bg}`}>
-                                    <Truck size={16} className={isSelected ? 'text-[#2c92d5]' : style.text} />
+                                    <Truck size={16} className={isSelected ? 'text-[#2796FF]' : style.text} />
                                 </div>
                                 <div>
-                                    <h3 className={`font-bold text-sm leading-tight ${isSelected ? 'text-[#2c92d5]' : 'text-slate-700'}`}>{lane.name}</h3>
+                                    <h3 className={`font-bold text-sm leading-tight ${isSelected ? 'text-[#2796FF]' : 'text-slate-700'}`}>{lane.name}</h3>
                                 </div>
                             </div>
                             <span className="text-xs font-mono font-bold text-slate-500">{lane.lastUpdated}</span>
                         </div>
                         <div className="flex justify-between items-center text-xs">
-                             <div className={`flex items-center gap-1.5 font-semibold ${isSelected ? 'text-[#2c92d5]' : style.text}`}>
+                             <div className={`flex items-center gap-1.5 font-semibold ${isSelected ? 'text-[#2796FF]' : style.text}`}>
                                  {style.icon}
                                  <span>{getStatusLabel(lane.status)}</span>
                              </div>
@@ -289,13 +289,13 @@ export const Dashboard: React.FC = () => {
                  <div className="flex">
                     <button 
                         onClick={() => setActiveTab('images')}
-                        className={`flex items-center gap-2 px-6 py-3 text-sm font-bold border-r border-slate-200 transition-colors ${activeTab === 'images' ? 'bg-white text-[#2c92d5] border-t-2 border-t-[#2c92d5]' : 'text-slate-500 hover:bg-slate-100'}`}
+                        className={`flex items-center gap-2 px-6 py-3 text-sm font-bold border-r border-slate-200 transition-colors ${activeTab === 'images' ? 'bg-white text-[#2796FF] border-t-2 border-t-[#2796FF]' : 'text-slate-500 hover:bg-slate-100'}`}
                     >
                         <ImageIcon size={16} /> Hình ảnh
                     </button>
                     <button 
                         onClick={() => setActiveTab('video')}
-                        className={`flex items-center gap-2 px-6 py-3 text-sm font-bold border-r border-slate-200 transition-colors ${activeTab === 'video' ? 'bg-white text-[#2c92d5] border-t-2 border-t-[#2c92d5]' : 'text-slate-500 hover:bg-slate-100'}`}
+                        className={`flex items-center gap-2 px-6 py-3 text-sm font-bold border-r border-slate-200 transition-colors ${activeTab === 'video' ? 'bg-white text-[#2796FF] border-t-2 border-t-[#2796FF]' : 'text-slate-500 hover:bg-slate-100'}`}
                     >
                         <Video size={16} /> Video
                     </button>
@@ -303,7 +303,7 @@ export const Dashboard: React.FC = () => {
                  {hasTransaction && (
                      <button 
                         onClick={handleDownloadAll}
-                        className="p-2 text-slate-500 hover:text-[#2c92d5] hover:bg-blue-50 rounded-md transition-colors tooltip"
+                        className="p-2 text-slate-500 hover:text-[#2796FF] hover:bg-blue-50 rounded-md transition-colors tooltip"
                         title="Tải về toàn bộ ảnh"
                      >
                          <Download size={18} />
@@ -352,7 +352,7 @@ export const Dashboard: React.FC = () => {
                              ].map((item) => (
                                 <div 
                                     key={item.key}
-                                    className="col-span-1 relative rounded bg-slate-100 border border-slate-200 overflow-hidden group cursor-pointer hover:ring-2 hover:ring-[#2c92d5]"
+                                    className="col-span-1 relative rounded bg-slate-100 border border-slate-200 overflow-hidden group cursor-pointer hover:ring-2 hover:ring-[#2796FF]"
                                     onContextMenu={(e) => handleRightClickImage(e, activeTransactionData.images[item.key as keyof typeof activeTransactionData.images])}
                                 >
                                     <img src={activeTransactionData.images[item.key as keyof typeof activeTransactionData.images]} className="w-full h-full object-cover" alt={item.label} />
@@ -381,7 +381,7 @@ export const Dashboard: React.FC = () => {
                             type="text" 
                             value={searchTruck}
                             onChange={(e) => setSearchTruck(e.target.value)}
-                            className="w-full px-2 py-1.5 border border-slate-300 rounded text-xs font-mono focus:ring-1 focus:ring-[#2c92d5] outline-none uppercase bg-white text-slate-900" 
+                            className="w-full px-2 py-1.5 border border-slate-300 rounded text-xs font-mono focus:ring-1 focus:ring-[#2796FF] outline-none uppercase bg-white text-slate-900" 
                             placeholder="51C-..." 
                          />
                      </div>
@@ -391,13 +391,13 @@ export const Dashboard: React.FC = () => {
                             type="text" 
                             value={searchCont}
                             onChange={(e) => setSearchCont(e.target.value)}
-                            className="w-full px-2 py-1.5 border border-slate-300 rounded text-xs font-mono focus:ring-1 focus:ring-[#2c92d5] outline-none uppercase bg-white text-slate-900" 
+                            className="w-full px-2 py-1.5 border border-slate-300 rounded text-xs font-mono focus:ring-1 focus:ring-[#2796FF] outline-none uppercase bg-white text-slate-900" 
                             placeholder="ABCD..." 
                          />
                      </div>
                      <button 
                         onClick={handleSearch}
-                        className="px-3 py-1.5 bg-[#2c92d5] text-white rounded text-xs font-bold hover:bg-[#237ab3] transition-colors h-[30px] mb-[1px]"
+                        className="px-3 py-1.5 bg-[#2796FF] text-white rounded text-xs font-bold hover:bg-[#2080db] transition-colors h-[30px] mb-[1px]"
                      >
                          Nạp
                      </button>
@@ -407,7 +407,7 @@ export const Dashboard: React.FC = () => {
                  <div className="bg-white rounded-lg border border-slate-200 shadow-sm flex-1 p-3 overflow-y-auto">
                      <h3 className="text-xs font-bold text-slate-800 uppercase border-b pb-2 mb-2 flex justify-between">
                          Thông tin lệnh
-                         <span className="text-[#2c92d5]">{hasTransaction ? activeTransactionData.timestamp : '--:--'}</span>
+                         <span className="text-[#2796FF]">{hasTransaction ? activeTransactionData.timestamp : '--:--'}</span>
                      </h3>
                      {hasTransaction ? (
                          <div className="space-y-2 text-sm">
@@ -434,7 +434,7 @@ export const Dashboard: React.FC = () => {
                              
                              <button 
                                 onClick={() => setIsCorrectionOpen(true)}
-                                className="w-full mt-3 py-2 bg-[#2c92d5] text-white rounded-md text-sm font-bold hover:bg-[#237ab3] flex items-center justify-center gap-2 transition-colors shadow-sm"
+                                className="w-full mt-3 py-2 bg-[#2796FF] text-white rounded-md text-sm font-bold hover:bg-[#2080db] flex items-center justify-center gap-2 transition-colors shadow-sm"
                              >
                                  <Edit3 size={14}/> Điều chỉnh & Xác nhận
                              </button>
@@ -457,7 +457,7 @@ export const Dashboard: React.FC = () => {
                          <thead className="bg-slate-100 text-slate-500 font-semibold text-[11px] uppercase sticky top-0 z-10">
                              <tr>
                                  <th className="px-3 py-2 border-b border-r w-1/4">Trường dữ liệu</th>
-                                 <th className="px-3 py-2 border-b border-r w-[37.5%] text-[#2c92d5] bg-[#2c92d5]/10">Thông tin OCR</th>
+                                 <th className="px-3 py-2 border-b border-r w-[37.5%] text-[#2796FF] bg-[#2796FF]/10">Thông tin OCR</th>
                                  <th className="px-3 py-2 border-b w-[37.5%] text-slate-700">Thông tin Lệnh</th>
                              </tr>
                          </thead>
