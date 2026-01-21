@@ -237,7 +237,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
                         <div className="flex bg-slate-100 p-0.5 rounded-md border border-slate-200">
                             <button 
                                 onClick={() => setFormState({...formState, isStandardCont: false})}
-                                className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${!formState.isStandardCont ? 'bg-white text-slate-800 shadow-sm border border-slate-200' : 'text-slate-400 hover:text-slate-600'}`}
+                                className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${!formState.isStandardCont ? 'bg-red-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
                             >
                                 Không
                             </button>
@@ -256,7 +256,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
                         <div className="flex bg-slate-100 p-0.5 rounded-md border border-slate-200">
                             <button 
                                 onClick={() => setFormState({...formState, hasStickers: false})}
-                                className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${!formState.hasStickers ? 'bg-rose-500 text-white shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
+                                className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${!formState.hasStickers ? 'bg-red-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
                             >
                                 Không
                             </button>
@@ -275,7 +275,7 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
                         <div className="flex bg-slate-100 p-0.5 rounded-md border border-slate-200">
                             <button 
                                 onClick={() => setFormState({...formState, isPassgate: false})}
-                                className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${!formState.isPassgate ? 'bg-white text-slate-800 shadow-sm border border-slate-200' : 'text-slate-400 hover:text-slate-600'}`}
+                                className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${!formState.isPassgate ? 'bg-red-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
                             >
                                 Không
                             </button>
