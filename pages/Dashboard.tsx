@@ -352,7 +352,7 @@ export const Dashboard: React.FC = () => {
                             onClick={handleSearch}
                             className="px-3 h-full bg-[#2796FF] text-white rounded-[4px] text-xs font-bold hover:bg-[#2080db] transition-colors ml-1"
                         >
-                            Nạp
+                            Tra cứu
                         </button>
                      </div>
 
