@@ -137,171 +137,165 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
   // ---------------------------------------------------------------------------
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-      <div className="bg-white rounded-lg shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
+      <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
         
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200">
+        <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
             <div className="flex items-center gap-2">
-                <h3 className="text-lg font-bold text-slate-800">Thông số OCR:</h3>
+                <h3 className="text-base font-bold text-slate-800 uppercase">Điều chỉnh thông tin</h3>
                 {changes > 0 && (
-                    <span className="bg-[#2796FF] text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                    <span className="bg-[#2796FF] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                         {changes} thay đổi
                     </span>
                 )}
             </div>
-            <button onClick={onClose} className="text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded p-1">
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-600 hover:bg-slate-200 rounded p-1">
                 <X size={20} />
             </button>
         </div>
 
-        {/* Body */}
-        <div className="p-5 space-y-4 max-h-[80vh] overflow-y-auto custom-scrollbar">
+        {/* Body - Compact Grid Layout */}
+        <div className="p-5 space-y-4">
             
-            {/* Container Number Split */}
-            <div className="space-y-1">
-                <div className="flex justify-between items-center">
-                    <label className="text-sm text-slate-600 font-medium">Số Bic:</label>
+            {/* Row 1: Container Info */}
+            <div className="grid grid-cols-12 gap-4">
+                <div className="col-span-3 space-y-1">
+                    <label className="text-xs font-bold text-slate-500 uppercase">Số BIC</label>
+                    <input 
+                        type="text" 
+                        value={formState.bic}
+                        onChange={(e) => setFormState({...formState, bic: e.target.value.toUpperCase()})}
+                        className="w-full px-3 py-2 border border-slate-300 rounded text-sm focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono font-bold text-slate-800 uppercase bg-white h-9"
+                    />
                 </div>
-                <input 
-                    type="text" 
-                    value={formState.bic}
-                    onChange={(e) => setFormState({...formState, bic: e.target.value.toUpperCase()})}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono text-slate-900 uppercase bg-white"
-                />
-            </div>
-            <div className="space-y-1">
-                <label className="text-sm text-slate-600 font-medium">Số Container:</label>
-                <input 
-                    type="text" 
-                    value={formState.contNumber}
-                    onChange={(e) => setFormState({...formState, contNumber: e.target.value})}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono text-slate-900 bg-white"
-                />
-            </div>
-
-            {/* Other Fields */}
-            <div className="space-y-1">
-                <label className="text-sm text-slate-600 font-medium">Số Mooc:</label>
-                <input 
-                    type="text" 
-                    value={formState.trailer}
-                    onChange={(e) => setFormState({...formState, trailer: e.target.value.toUpperCase()})}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono text-slate-900 uppercase bg-white"
-                />
-            </div>
-
-            <div className="space-y-1">
-                <label className="text-sm text-slate-600 font-medium">Số Xe:</label>
-                <input 
-                    type="text" 
-                    value={formState.truck}
-                    onChange={(e) => setFormState({...formState, truck: e.target.value.toUpperCase()})}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono text-slate-900 uppercase bg-white"
-                />
-            </div>
-
-            <div className="space-y-1">
-                <label className="text-sm text-slate-600 font-medium">Loại Cont:</label>
-                <input 
-                    type="text" 
-                    value={formState.iso}
-                    onChange={(e) => setFormState({...formState, iso: e.target.value.toUpperCase()})}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono text-slate-900 uppercase bg-white"
-                />
-            </div>
-
-            <div className="space-y-1">
-                <label className="text-sm text-slate-600 font-medium">Loại Cont Lệnh:</label>
-                <input 
-                    type="text" 
-                    readOnly
-                    value={formState.isoSystem}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md text-slate-500 font-mono cursor-not-allowed"
-                />
-                <p className="text-[10px] text-slate-400 italic">Chỉ cho phép chỉnh sửa 2 ký tự số đầu tiên (theo nghiệp vụ)</p>
-            </div>
-
-             <div className="space-y-1">
-                <label className="text-sm text-slate-600 font-medium">VGM:</label>
-                <input 
-                    type="text" 
-                    value={formState.vgm}
-                    onChange={(e) => setFormState({...formState, vgm: e.target.value})}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono text-slate-900 bg-white"
-                />
-            </div>
-
-            {/* Toggles */}
-            <div className="pt-2 space-y-3 border-t border-slate-100 mt-4">
-                {/* Standard Cont Toggle */}
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-slate-700">Xác nhận Cont thường:</span>
-                        {formState.isStandardCont !== initialState.isStandardCont && (
-                             <span className="text-[10px] bg-yellow-400 text-yellow-900 font-bold px-1.5 rounded">Changed</span>
-                        )}
-                    </div>
-                    <div className="flex bg-slate-100 p-1 rounded-md border border-slate-200">
-                        <button 
-                            onClick={() => setFormState({...formState, isStandardCont: false})}
-                            className={`px-3 py-1 text-xs font-bold rounded transition-all ${!formState.isStandardCont ? 'bg-white text-slate-800 shadow-sm border border-slate-200' : 'text-slate-400'}`}
-                        >
-                            Không
-                        </button>
-                        <button 
-                            onClick={() => setFormState({...formState, isStandardCont: true})}
-                            className={`px-3 py-1 text-xs font-bold rounded transition-all ${formState.isStandardCont ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400'}`}
-                        >
-                            Có
-                        </button>
-                    </div>
+                <div className="col-span-5 space-y-1">
+                    <label className="text-xs font-bold text-slate-500 uppercase">Số Container</label>
+                    <input 
+                        type="text" 
+                        value={formState.contNumber}
+                        onChange={(e) => setFormState({...formState, contNumber: e.target.value})}
+                        className="w-full px-3 py-2 border border-slate-300 rounded text-sm focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono font-bold text-slate-800 bg-white h-9"
+                    />
                 </div>
-
-                {/* Stickers Toggle */}
-                 <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-slate-700">Xác nhận Cont dán đủ tem:</span>
-                    <div className="flex bg-slate-100 p-1 rounded-md border border-slate-200">
-                        <button 
-                            onClick={() => setFormState({...formState, hasStickers: false})}
-                            className={`px-3 py-1 text-xs font-bold rounded transition-all ${!formState.hasStickers ? 'bg-rose-500 text-white shadow-sm' : 'text-slate-400'}`}
-                        >
-                            Không
-                        </button>
-                        <button 
-                            onClick={() => setFormState({...formState, hasStickers: true})}
-                            className={`px-3 py-1 text-xs font-bold rounded transition-all ${formState.hasStickers ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400'}`}
-                        >
-                            Có
-                        </button>
-                    </div>
+                 <div className="col-span-2 space-y-1">
+                    <label className="text-xs font-bold text-slate-500 uppercase">ISO (OCR)</label>
+                    <input 
+                        type="text" 
+                        value={formState.iso}
+                        onChange={(e) => setFormState({...formState, iso: e.target.value.toUpperCase()})}
+                        className="w-full px-3 py-2 border border-slate-300 rounded text-sm focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono font-bold text-slate-800 uppercase bg-white h-9"
+                    />
                 </div>
+                <div className="col-span-2 space-y-1">
+                    <label className="text-xs font-bold text-slate-400 uppercase">ISO Lệnh</label>
+                    <input 
+                        type="text" 
+                        readOnly
+                        value={formState.isoSystem}
+                        className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded text-sm text-slate-500 font-mono h-9 cursor-not-allowed"
+                    />
+                </div>
+            </div>
 
-                {/* Passgate Toggle */}
-                 <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-slate-700">Xác nhận Passgate:</span>
-                    <div className="flex bg-slate-100 p-1 rounded-md border border-slate-200">
-                        <button 
-                            onClick={() => setFormState({...formState, isPassgate: false})}
-                            className={`px-3 py-1 text-xs font-bold rounded transition-all ${!formState.isPassgate ? 'bg-white text-slate-800 shadow-sm border border-slate-200' : 'text-slate-400'}`}
-                        >
-                            Không
-                        </button>
-                        <button 
-                            onClick={() => setFormState({...formState, isPassgate: true})}
-                            className={`px-3 py-1 text-xs font-bold rounded transition-all ${formState.isPassgate ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400'}`}
-                        >
-                            Có
-                        </button>
+            {/* Row 2: Transport & Weight */}
+            <div className="grid grid-cols-3 gap-4">
+                 <div className="space-y-1">
+                    <label className="text-xs font-bold text-slate-500 uppercase">Số Xe</label>
+                    <input 
+                        type="text" 
+                        value={formState.truck}
+                        onChange={(e) => setFormState({...formState, truck: e.target.value.toUpperCase()})}
+                        className="w-full px-3 py-2 border border-slate-300 rounded text-sm focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono font-bold text-slate-800 uppercase bg-white h-9"
+                    />
+                </div>
+                <div className="space-y-1">
+                    <label className="text-xs font-bold text-slate-500 uppercase">Số Mooc</label>
+                    <input 
+                        type="text" 
+                        value={formState.trailer}
+                        onChange={(e) => setFormState({...formState, trailer: e.target.value.toUpperCase()})}
+                        className="w-full px-3 py-2 border border-slate-300 rounded text-sm focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono font-bold text-slate-800 uppercase bg-white h-9"
+                    />
+                </div>
+                <div className="space-y-1">
+                    <label className="text-xs font-bold text-slate-500 uppercase">VGM (Kg)</label>
+                    <input 
+                        type="text" 
+                        value={formState.vgm}
+                        onChange={(e) => setFormState({...formState, vgm: e.target.value})}
+                        className="w-full px-3 py-2 border border-slate-300 rounded text-sm focus:ring-2 focus:ring-[#2796FF] focus:border-[#2796FF] font-mono font-bold text-slate-800 bg-white h-9"
+                    />
+                </div>
+            </div>
+
+            {/* Row 3: Toggles - Compact Grid */}
+            <div className="pt-4 mt-2 border-t border-slate-100">
+                <div className="grid grid-cols-3 gap-4">
+                    {/* Standard Cont Toggle */}
+                    <div className="flex flex-col gap-2">
+                        <span className="text-xs font-bold text-slate-700">Cont thường?</span>
+                        <div className="flex bg-slate-100 p-0.5 rounded-md border border-slate-200">
+                            <button 
+                                onClick={() => setFormState({...formState, isStandardCont: false})}
+                                className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${!formState.isStandardCont ? 'bg-white text-slate-800 shadow-sm border border-slate-200' : 'text-slate-400 hover:text-slate-600'}`}
+                            >
+                                Không
+                            </button>
+                            <button 
+                                onClick={() => setFormState({...formState, isStandardCont: true})}
+                                className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${formState.isStandardCont ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
+                            >
+                                Có
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Stickers Toggle */}
+                     <div className="flex flex-col gap-2">
+                        <span className="text-xs font-bold text-slate-700">Dán đủ tem?</span>
+                        <div className="flex bg-slate-100 p-0.5 rounded-md border border-slate-200">
+                            <button 
+                                onClick={() => setFormState({...formState, hasStickers: false})}
+                                className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${!formState.hasStickers ? 'bg-rose-500 text-white shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
+                            >
+                                Không
+                            </button>
+                            <button 
+                                onClick={() => setFormState({...formState, hasStickers: true})}
+                                className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${formState.hasStickers ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
+                            >
+                                Có
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Passgate Toggle */}
+                     <div className="flex flex-col gap-2">
+                        <span className="text-xs font-bold text-slate-700">Passgate?</span>
+                        <div className="flex bg-slate-100 p-0.5 rounded-md border border-slate-200">
+                            <button 
+                                onClick={() => setFormState({...formState, isPassgate: false})}
+                                className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${!formState.isPassgate ? 'bg-white text-slate-800 shadow-sm border border-slate-200' : 'text-slate-400 hover:text-slate-600'}`}
+                            >
+                                Không
+                            </button>
+                            <button 
+                                onClick={() => setFormState({...formState, isPassgate: true})}
+                                className={`flex-1 py-1.5 text-xs font-bold rounded transition-all ${formState.isPassgate ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
+                            >
+                                Có
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         {/* Footer Actions */}
-        <div className="bg-slate-50 px-5 py-4 flex items-center justify-between border-t border-slate-200">
+        <div className="bg-slate-50 px-5 py-3 flex items-center justify-between border-t border-slate-200">
             <button 
                 onClick={onClose} 
-                className="px-4 py-2 bg-slate-500 hover:bg-slate-600 text-white text-sm font-bold rounded shadow-sm transition-colors"
+                className="px-4 py-2 bg-white border border-slate-300 hover:bg-slate-100 text-slate-600 text-sm font-bold rounded shadow-sm transition-colors"
             >
                 Đóng
             </button>
@@ -309,17 +303,16 @@ export const CorrectionModal: React.FC<CorrectionModalProps> = ({ isOpen, onClos
             <div className="flex gap-2">
                 <button 
                     onClick={handleReset}
-                    className="px-4 py-2 bg-amber-400 hover:bg-amber-500 text-amber-900 text-sm font-bold rounded shadow-sm transition-colors flex items-center gap-1"
+                    className="px-4 py-2 bg-amber-100 hover:bg-amber-200 text-amber-800 text-sm font-bold rounded shadow-sm transition-colors flex items-center gap-1"
                 >
-                    <RotateCcw size={16} /> Reset thay đổi
+                    <RotateCcw size={16} /> Reset
                 </button>
                 <button 
                     onClick={handleUpdateClick} 
-                    className="px-4 py-2 bg-[#2796FF] hover:bg-[#2080db] text-white text-sm font-bold rounded shadow-sm transition-colors flex items-center gap-2"
+                    className="px-5 py-2 bg-[#2796FF] hover:bg-[#2080db] text-white text-sm font-bold rounded shadow-sm transition-colors flex items-center gap-2"
                 >
                     <Save size={16} />
-                    Cập Nhật
-                    {changes > 0 && <span className="bg-white/20 px-1.5 rounded text-xs">{changes}</span>}
+                    Lưu Thay Đổi
                 </button>
             </div>
         </div>

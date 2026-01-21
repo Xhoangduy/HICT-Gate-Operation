@@ -60,5 +60,5 @@ export const MOCK_TRANSACTION: TransactionData = {
     bookingNo: 'SMG211025-001',
     eir: 'EIR-8821',
   },
-  notes: 'Container chưa được giám định',
+  notes: 'Container có dán Tem nguy hiểm',
 };
