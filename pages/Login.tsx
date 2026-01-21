@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { KeyRound, User, ChevronRight, Container, X, ShieldCheck } from 'lucide-react';
+import { KeyRound, User, ChevronRight, X, ShieldCheck } from 'lucide-react';
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -29,13 +29,17 @@ export const Login: React.FC = () => {
         </div>
 
       <div className="w-full max-w-md z-10 px-6">
-        {/* Brand Header */}
+        {/* Brand Header - CEH Logo */}
         <div className="flex flex-col items-center mb-8">
-            <div className="w-16 h-16 bg-[#2796FF] rounded-2xl flex items-center justify-center mb-6 shadow-2xl shadow-[#2796FF]/50 transform rotate-3 border border-white/10">
-                <Container className="text-white w-9 h-9" strokeWidth={1.5} />
+            <div className="flex flex-col items-center justify-center select-none">
+                {/* CEH Typography Logo */}
+                <h1 className="text-[80px] leading-none font-black text-[#2796FF] tracking-tighter" style={{ fontFamily: 'Arial, sans-serif' }}>
+                    CEH
+                </h1>
+                <h2 className="text-[#2796FF] text-2xl font-serif italic tracking-wide mt-[-5px]" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.1)' }}>
+                    Designed to be changed
+                </h2>
             </div>
-            <h1 className="text-2xl font-bold text-white tracking-tight text-center uppercase">GATE OPERATION SYSTEM</h1>
-            <p className="text-slate-400 text-sm mt-2 font-medium tracking-wide uppercase">Hệ thống quản lý cảng thông minh</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
@@ -44,7 +48,7 @@ export const Login: React.FC = () => {
           
           <div className="p-8 pt-10">
             <h2 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-                Đăng nhập hệ thống
+                Đăng nhập
             </h2>
 
             <form onSubmit={handleLogin} className="space-y-6">

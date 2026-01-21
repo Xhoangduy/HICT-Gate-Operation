@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Filter, Truck, Search, AlertCircle, ZoomIn, ZoomOut, Download, Layers, Video, Image as ImageIcon, Edit3, CheckCircle, AlertTriangle, XCircle, X, RotateCcw, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
-import { MOCK_LANES, MOCK_TRANSACTION } from '../constants';
+import { MOCK_LANES, MOCK_TRANSACTION, MOCK_TRANSACTIONS_BY_LANE } from '../constants';
 import { Lane, LaneStatus } from '../types';
 import { CorrectionModal } from '../components/CorrectionModal';
 
@@ -135,7 +135,7 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, imageSrc, onClose }) => {
 };
 
 export const Dashboard: React.FC = () => {
-  const [selectedLaneId, setSelectedLaneId] = useState<string>('L02'); 
+  const [selectedLaneId, setSelectedLaneId] = useState<string>('L03'); 
   const [filter, setFilter] = useState('All');
   const [activeTab, setActiveTab] = useState<'images' | 'video'>('images');
   const [isCorrectionOpen, setIsCorrectionOpen] = useState(false);
@@ -149,6 +149,14 @@ export const Dashboard: React.FC = () => {
   // Lightbox State
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImg, setLightboxImg] = useState('');
+
+  // Switch data when lane is selected
+  useEffect(() => {
+    const laneData = MOCK_TRANSACTIONS_BY_LANE[selectedLaneId];
+    if (laneData) {
+        setActiveTransactionData(laneData);
+    }
+  }, [selectedLaneId]);
 
   // Filter lanes logic
   const filteredLanes = filter === 'All' 
