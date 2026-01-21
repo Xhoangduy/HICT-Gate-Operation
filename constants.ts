@@ -9,7 +9,8 @@ const IMG_L02_LEFT = "https://res.cloudinary.com/ditrwpwyv/image/upload/v1768911
 const IMG_L02_RIGHT = "https://res.cloudinary.com/ditrwpwyv/image/upload/v1768911933/ff1e831e-f830-45a8-a8bb-eee152daa8f3_fuylf3.jpg"; 
 
 // --- LANE 03 IMAGES (NEW SET) ---
-const IMG_L03_PANORAMA = "https://res.cloudinary.com/ditrwpwyv/image/upload/v1768969934/97bf8fe8-f1a8-4270-ab41-cef9cffd6ba8_c30chi.jpg";
+// Updated to pink ONE container real image
+const IMG_L03_PANORAMA = "https://res.cloudinary.com/ditrwpwyv/image/upload/v1768981226/z7453205868090_6f83fb2e9c8a7d2e4b37099ff6971fb9_trjnxj.jpg";
 const IMG_L03_FRONT = "https://res.cloudinary.com/ditrwpwyv/image/upload/v1768969934/37117cf3-d376-4467-8301-9914171af68e_izbqp8.jpg";
 const IMG_L03_BACK = "https://res.cloudinary.com/ditrwpwyv/image/upload/v1768969907/db889cd9-d559-49c2-ac65-c91d27461b5a_u3mufh.jpg";
 const IMG_L03_TOP = "https://res.cloudinary.com/ditrwpwyv/image/upload/v1768969934/69ac52ca-e370-48fb-a080-d6f4f45050a3_ocs3me.jpg";
@@ -19,7 +20,7 @@ const IMG_L03_RIGHT = "https://res.cloudinary.com/ditrwpwyv/image/upload/v176896
 
 export const MOCK_LANES: Lane[] = [
   { id: 'L01', name: 'Cổng vào 1', type: 'Inbound', status: LaneStatus.Idle, lastUpdated: '00:00:00' },
-  { id: 'L02', name: 'Cổng vào 2', type: 'Inbound', status: LaneStatus.Waiting, currentTruck: '51L-88941', duration: '30s', lastUpdated: '00:30:15' },
+  { id: 'L02', name: 'Cổng vào 2', type: 'Inbound', status: LaneStatus.Success, currentTruck: '51L-88941', duration: '30s', lastUpdated: '00:30:15' },
   { id: 'L03', name: 'Cổng vào 3', type: 'Inbound', status: LaneStatus.Waiting, currentTruck: '30C-22432', containerNo: 'TGBU3719401', duration: '15s', lastUpdated: '01:43:22' },
   { id: 'L04', name: 'Cổng ra 4', type: 'Outbound', status: LaneStatus.Failed, currentTruck: '30C-42421', containerNo: 'MSKU123456', duration: '120s', lastUpdated: '03:14:10' },
   { id: 'L05', name: 'Cổng ra 5', type: 'Outbound', status: LaneStatus.Failed, currentTruck: '30C-57145', containerNo: 'PONU987654', duration: '45s', lastUpdated: '05:07:33' },
@@ -33,7 +34,7 @@ const DATA_L02: TransactionData = {
   sessionId: 'SMG211020250002',
   timestamp: '21/10/2025 13:21:44',
   laneId: 'L02',
-  status: LaneStatus.Waiting,
+  status: LaneStatus.Success,
   images: {
     panorama: IMG_L02_PANORAMA,
     front: IMG_L02_FRONT,

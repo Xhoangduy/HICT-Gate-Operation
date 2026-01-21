@@ -48,7 +48,7 @@ const getStatusClasses = (status: LaneStatus) => {
 const getStatusLabel = (status: LaneStatus) => {
     switch (status) {
         case LaneStatus.Waiting: return 'Chờ giám định';
-        case LaneStatus.Success: return 'Hoàn thành';
+        case LaneStatus.Success: return 'Hoàn tất';
         case LaneStatus.Failed: return 'Sai lệch / Lỗi';
         case LaneStatus.Processing: return 'Đang xử lý';
         default: return '---';
@@ -334,31 +334,31 @@ export const Dashboard: React.FC = () => {
 
                  {/* Right: Search & Actions */}
                  <div className="flex items-center gap-3">
-                     {/* Compact Search Bar */}
-                     <div className="flex items-center gap-2 bg-white rounded-md border border-slate-200 p-0.5 shadow-sm h-8">
-                        <div className="relative border-r border-slate-100 h-full flex items-center">
-                            <span className="absolute left-2 text-[9px] font-bold text-slate-400 uppercase pointer-events-none">XE</span>
+                     {/* Compact Search Bar - REFACTORED for better Layout */}
+                     <div className="flex items-center bg-white rounded-md border border-slate-200 shadow-sm h-9 overflow-hidden">
+                        <div className="flex items-center h-full border-r border-slate-100 pl-3 group focus-within:bg-slate-50 transition-colors w-48">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase whitespace-nowrap cursor-default select-none mr-1">XE</span>
                             <input 
                                 type="text" 
                                 value={searchTruck}
                                 onChange={(e) => setSearchTruck(e.target.value)}
-                                className="pl-7 pr-2 py-1 w-24 text-xs font-mono font-bold text-slate-700 outline-none uppercase bg-transparent h-full placeholder-slate-300" 
-                                placeholder="51C-..." 
+                                className="h-full py-1 pr-2 w-full text-xs font-mono font-bold text-slate-700 outline-none uppercase bg-transparent placeholder:text-slate-300 placeholder:font-sans placeholder:font-normal flex-1 min-w-0" 
+                                placeholder="Nhập số xe" 
                             />
                         </div>
-                        <div className="relative h-full flex items-center">
-                            <span className="absolute left-2 text-[9px] font-bold text-slate-400 uppercase pointer-events-none">CONT</span>
+                        <div className="flex items-center h-full pl-3 group focus-within:bg-slate-50 transition-colors w-48">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase whitespace-nowrap cursor-default select-none mr-1">CONT</span>
                             <input 
                                 type="text" 
                                 value={searchCont}
                                 onChange={(e) => setSearchCont(e.target.value)}
-                                className="pl-10 pr-2 py-1 w-32 text-xs font-mono font-bold text-slate-700 outline-none uppercase bg-transparent h-full placeholder-slate-300" 
-                                placeholder="ABCD..." 
+                                className="h-full py-1 pr-2 w-full text-xs font-mono font-bold text-slate-700 outline-none uppercase bg-transparent placeholder:text-slate-300 placeholder:font-sans placeholder:font-normal flex-1 min-w-0" 
+                                placeholder="Nhập số container" 
                             />
                         </div>
                         <button 
                             onClick={handleSearch}
-                            className="px-3 h-full bg-[#2796FF] text-white rounded-[4px] text-xs font-bold hover:bg-[#2080db] transition-colors ml-1"
+                            className="h-full px-4 bg-[#2796FF] text-white text-xs font-bold hover:bg-[#2080db] transition-colors border-l border-blue-400"
                         >
                             Tra cứu
                         </button>
