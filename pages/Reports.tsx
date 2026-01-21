@@ -15,17 +15,17 @@ const SUMMARY_DATA = [
     { id: 'L08', label: 'Cổng vào 8', type: 'lane', total: 27202, success: 26488, successRate: 97.38, failed: 714, failedRate: 2.62 },
 ];
 
-// Mock Data for Detail Report - Updated to all Success
+// Mock Data for Detail Report - Updated to all Failed
 const DETAIL_DATA = [
-    { id: 1, date: '04/11/2025', time: '21:20:05', lane: 'Cổng vào 6', order: '07ZFGG', container: 'TRHU4505495', truck: '50H29155', trailer: '51R17161', status: 'Success', reason: '' },
-    { id: 2, date: '04/11/2025', time: '22:25:54', lane: 'Cổng vào 8', order: 'XBC627', container: 'WHSU2386497', truck: '15C18543', trailer: '15R07419', status: 'Success', reason: '' },
-    { id: 3, date: '04/11/2025', time: '22:58:02', lane: 'Cổng ra 2', order: '42A7B4', container: 'OOCU6974298', truck: '15C28992', trailer: '15R12906', status: 'Success', reason: '' },
-    { id: 4, date: '04/11/2025', time: '07:03:17', lane: 'Cổng vào 6', order: 'BDGJDV', container: 'WHLU0379404', truck: '15H15017', trailer: '15RM05362', status: 'Success', reason: '' },
-    { id: 5, date: '04/11/2025', time: '07:06:40', lane: 'Cổng vào 8', order: '1HQ7DI', container: 'CAIU3138438', truck: '19H00126', trailer: '19R01050', status: 'Success', reason: '' },
-    { id: 6, date: '04/11/2025', time: '20:25:02', lane: 'Cổng vào 6', order: '12DS91', container: 'TCLU3827182', truck: '15C15254', trailer: '15R15046', status: 'Success', reason: '' },
-    { id: 7, date: '04/11/2025', time: '20:58:07', lane: 'Cổng ra 2', order: 'T2DS91', container: 'TCLU3827182', truck: '15C15254', trailer: '15R15046', status: 'Success', reason: '' },
-    { id: 8, date: '04/11/2025', time: '21:23:36', lane: 'Cổng vào 6', order: 'GCZ3HV', container: 'TCLU4654672', truck: '15C21783', trailer: '16R4438', status: 'Success', reason: '' },
-    { id: 9, date: '04/11/2025', time: '21:35:56', lane: 'Cổng ra 1', order: 'GCZ3HV', container: 'TCLU4654672', truck: '15C21783', trailer: '16R4438', status: 'Success', reason: '' },
+    { id: 1, date: '04/11/2025', time: '21:20:05', lane: 'Cổng vào 6', order: '07ZFGG', container: 'TRHU4505495', truck: '50H29155', trailer: '51R17161', status: 'Failed', reason: 'Sai thông tin đăng ký' },
+    { id: 2, date: '04/11/2025', time: '22:25:54', lane: 'Cổng vào 8', order: 'XBC627', container: 'WHSU2386497', truck: '15C18543', trailer: '15R07419', status: 'Failed', reason: 'Container hư hỏng' },
+    { id: 3, date: '04/11/2025', time: '22:58:02', lane: 'Cổng ra 2', order: '42A7B4', container: 'OOCU6974298', truck: '15C28992', trailer: '15R12906', status: 'Failed', reason: 'Sai trọng lượng VGM' },
+    { id: 4, date: '04/11/2025', time: '07:03:17', lane: 'Cổng vào 6', order: 'BDGJDV', container: 'WHLU0379404', truck: '15H15017', trailer: '15RM05362', status: 'Failed', reason: 'Không tìm thấy lệnh' },
+    { id: 5, date: '04/11/2025', time: '07:06:40', lane: 'Cổng vào 8', order: '1HQ7DI', container: 'CAIU3138438', truck: '19H00126', trailer: '19R01050', status: 'Failed', reason: 'Sai biển số xe' },
+    { id: 6, date: '04/11/2025', time: '20:25:02', lane: 'Cổng vào 6', order: '12DS91', container: 'TCLU3827182', truck: '15C15254', trailer: '15R15046', status: 'Failed', reason: 'Chưa thanh toán' },
+    { id: 7, date: '04/11/2025', time: '20:58:07', lane: 'Cổng ra 2', order: 'T2DS91', container: 'TCLU3827182', truck: '15C15254', trailer: '15R15046', status: 'Failed', reason: 'Lỗi hệ thống' },
+    { id: 8, date: '04/11/2025', time: '21:23:36', lane: 'Cổng vào 6', order: 'GCZ3HV', container: 'TCLU4654672', truck: '15C21783', trailer: '16R4438', status: 'Failed', reason: 'Sai số seal' },
+    { id: 9, date: '04/11/2025', time: '21:35:56', lane: 'Cổng ra 1', order: 'GCZ3HV', container: 'TCLU4654672', truck: '15C21783', trailer: '16R4438', status: 'Failed', reason: 'Quá khổ giới hạn' },
 ];
 
 const MOCK_CHART_DATA = [
