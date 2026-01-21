@@ -305,32 +305,70 @@ export const Dashboard: React.FC = () => {
       {/* RIGHT COLUMN: DETAIL VIEW */}
       <div className="flex-1 flex flex-col h-full overflow-hidden bg-slate-100">
         
-        {/* Top: Image Visualization */}
+        {/* Top: Image Visualization & Toolbar */}
         <div className="h-[55%] flex flex-col bg-white border-b border-slate-200 shadow-sm m-2 rounded-lg overflow-hidden">
-             <div className="flex border-b border-slate-200 bg-slate-50 justify-between items-center pr-3">
-                 <div className="flex">
+             <div className="flex border-b border-slate-200 bg-slate-50 justify-between items-center pr-3 h-[50px] shrink-0">
+                 {/* Left: Tabs */}
+                 <div className="flex h-full">
                     <button 
                         onClick={() => setActiveTab('images')}
-                        className={`flex items-center gap-2 px-6 py-3 text-sm font-bold border-r border-slate-200 transition-colors ${activeTab === 'images' ? 'bg-white text-[#2796FF] border-t-2 border-t-[#2796FF]' : 'text-slate-500 hover:bg-slate-100'}`}
+                        className={`flex items-center gap-2 px-6 h-full text-sm font-bold border-r border-slate-200 transition-colors ${activeTab === 'images' ? 'bg-white text-[#2796FF] border-t-2 border-t-[#2796FF]' : 'text-slate-500 hover:bg-slate-100'}`}
                     >
                         <ImageIcon size={16} /> Hình ảnh
                     </button>
                     <button 
                         onClick={() => setActiveTab('video')}
-                        className={`flex items-center gap-2 px-6 py-3 text-sm font-bold border-r border-slate-200 transition-colors ${activeTab === 'video' ? 'bg-white text-[#2796FF] border-t-2 border-t-[#2796FF]' : 'text-slate-500 hover:bg-slate-100'}`}
+                        className={`flex items-center gap-2 px-6 h-full text-sm font-bold border-r border-slate-200 transition-colors ${activeTab === 'video' ? 'bg-white text-[#2796FF] border-t-2 border-t-[#2796FF]' : 'text-slate-500 hover:bg-slate-100'}`}
                     >
                         <Video size={16} /> Video
                     </button>
                  </div>
-                 {hasTransaction && (
-                     <button 
-                        onClick={handleDownloadAll}
-                        className="p-2 text-slate-500 hover:text-[#2796FF] hover:bg-blue-50 rounded-md transition-colors tooltip"
-                        title="Tải về toàn bộ ảnh"
-                     >
-                         <Download size={18} />
-                     </button>
-                 )}
+
+                 {/* Right: Search & Actions */}
+                 <div className="flex items-center gap-3">
+                     {/* Compact Search Bar */}
+                     <div className="flex items-center gap-2 bg-white rounded-md border border-slate-200 p-0.5 shadow-sm h-8">
+                        <div className="relative border-r border-slate-100 h-full flex items-center">
+                            <span className="absolute left-2 text-[9px] font-bold text-slate-400 uppercase pointer-events-none">XE</span>
+                            <input 
+                                type="text" 
+                                value={searchTruck}
+                                onChange={(e) => setSearchTruck(e.target.value)}
+                                className="pl-7 pr-2 py-1 w-24 text-xs font-mono font-bold text-slate-700 outline-none uppercase bg-transparent h-full placeholder-slate-300" 
+                                placeholder="51C-..." 
+                            />
+                        </div>
+                        <div className="relative h-full flex items-center">
+                            <span className="absolute left-2 text-[9px] font-bold text-slate-400 uppercase pointer-events-none">CONT</span>
+                            <input 
+                                type="text" 
+                                value={searchCont}
+                                onChange={(e) => setSearchCont(e.target.value)}
+                                className="pl-10 pr-2 py-1 w-32 text-xs font-mono font-bold text-slate-700 outline-none uppercase bg-transparent h-full placeholder-slate-300" 
+                                placeholder="ABCD..." 
+                            />
+                        </div>
+                        <button 
+                            onClick={handleSearch}
+                            className="px-3 h-full bg-[#2796FF] text-white rounded-[4px] text-xs font-bold hover:bg-[#2080db] transition-colors ml-1"
+                        >
+                            Nạp
+                        </button>
+                     </div>
+
+                     {/* Divider */}
+                     <div className="h-5 w-[1px] bg-slate-300"></div>
+
+                     {hasTransaction && (
+                         <button 
+                            onClick={handleDownloadAll}
+                            className="flex items-center gap-2 px-3 py-1.5 text-slate-600 hover:text-[#2796FF] hover:bg-blue-50 rounded-md transition-colors text-xs font-bold border border-transparent hover:border-blue-100"
+                            title="Tải về toàn bộ ảnh"
+                         >
+                             <Download size={16} /> <span className="hidden xl:inline">Tải ảnh</span>
+                         </button>
+                     )}
+                 </div>
              </div>
 
              <div className="flex-1 p-3 overflow-hidden flex flex-col gap-3">
@@ -393,40 +431,10 @@ export const Dashboard: React.FC = () => {
         {/* Bottom: Data & Operations */}
         <div className="flex-1 flex flex-col md:flex-row px-2 pb-2 gap-2 overflow-hidden min-h-0">
             
-            {/* Left Panel: Search & Order Info */}
+            {/* Left Panel: Order Info ONLY (Search moved to top) */}
             <div className="w-full md:w-[35%] flex flex-col gap-2">
-                 {/* Quick Search */}
-                 <div className="bg-white p-2 rounded-lg border border-slate-200 shadow-sm flex gap-2 items-end">
-                     <div className="flex-1 space-y-1">
-                         <label className="text-[10px] font-bold text-slate-400 uppercase">Số Xe</label>
-                         <input 
-                            type="text" 
-                            value={searchTruck}
-                            onChange={(e) => setSearchTruck(e.target.value)}
-                            className="w-full px-2 py-1.5 border border-slate-300 rounded text-xs font-mono focus:ring-1 focus:ring-[#2796FF] outline-none uppercase bg-white text-slate-900" 
-                            placeholder="51C-..." 
-                         />
-                     </div>
-                     <div className="flex-1 space-y-1">
-                         <label className="text-[10px] font-bold text-slate-400 uppercase">Số Cont</label>
-                         <input 
-                            type="text" 
-                            value={searchCont}
-                            onChange={(e) => setSearchCont(e.target.value)}
-                            className="w-full px-2 py-1.5 border border-slate-300 rounded text-xs font-mono focus:ring-1 focus:ring-[#2796FF] outline-none uppercase bg-white text-slate-900" 
-                            placeholder="ABCD..." 
-                         />
-                     </div>
-                     <button 
-                        onClick={handleSearch}
-                        className="px-3 py-1.5 bg-[#2796FF] text-white rounded text-xs font-bold hover:bg-[#2080db] transition-colors h-[30px] mb-[1px]"
-                     >
-                         Nạp
-                     </button>
-                 </div>
-
-                 {/* Order Details Card */}
-                 <div className="bg-white rounded-lg border border-slate-200 shadow-sm flex-1 p-0 overflow-hidden flex flex-col">
+                 {/* Order Details Card - Now takes full height of this column */}
+                 <div className="bg-white rounded-lg border border-slate-200 shadow-sm flex-1 p-0 overflow-hidden flex flex-col h-full">
                      <div className="px-3 py-2 border-b border-slate-200 bg-slate-50 flex justify-between items-center shrink-0">
                          <h3 className="text-xs font-bold text-slate-800 uppercase">Thông tin lệnh</h3>
                          <span className="text-[#2796FF] text-xs font-bold">{hasTransaction ? activeTransactionData.timestamp : '--:--'}</span>
